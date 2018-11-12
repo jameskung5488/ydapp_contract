@@ -55,7 +55,7 @@ void ydappiotoken::onTransfer(account_name from, account_name to, extended_asset
                 N(dacincubator), N(transfer),
                 make_tuple(_self, from, asset(g.quota*2500, YDAPP_SYMBOL),
                     std::string("exceed EOS refund"))
-            ).send();         
+            ).send();
             g.quota = 0;
         }
         _global.set(g, _self);        

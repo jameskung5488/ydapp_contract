@@ -2978,7 +2978,7 @@
                 (i64.load offset=120
                  (get_local $14)
                 )
-                (i64.const 5000)
+                (i64.const 2500)
                )
               )
               (i64.const 4611686018427387903)
