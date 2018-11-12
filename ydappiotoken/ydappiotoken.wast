@@ -3,9 +3,9 @@
  (type $FUNCSIG$v (func))
  (type $FUNCSIG$j (func (result i64)))
  (type $FUNCSIG$vjj (func (param i64 i64)))
+ (type $FUNCSIG$vj (func (param i64)))
  (type $FUNCSIG$i (func (result i32)))
  (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
- (type $FUNCSIG$vj (func (param i64)))
  (type $FUNCSIG$ijjjj (func (param i64 i64 i64 i64) (result i32)))
  (type $FUNCSIG$vii (func (param i32 i32)))
  (type $FUNCSIG$iiii (func (param i32 i32 i32) (result i32)))
@@ -26,9 +26,8 @@
  (import "env" "require_auth" (func $require_auth (param i64)))
  (import "env" "require_auth2" (func $require_auth2 (param i64 i64)))
  (import "env" "send_inline" (func $send_inline (param i32 i32)))
- (import "env" "_ZN12ydappiotoken5clearEv" (func $_ZN12ydappiotoken5clearEv (param i32)))
  (table 3 3 anyfunc)
- (elem (i32.const 0) $__wasm_nullptr $_ZN12ydappiotoken4initEv $__importThunk__ZN12ydappiotoken5clearEv)
+ (elem (i32.const 0) $__wasm_nullptr $_ZN12ydappiotoken4initEv $_ZN12ydappiotoken5clearEv)
  (memory $0 1)
  (data (i32.const 4) "\a0d\00\00")
  (data (i32.const 16) "transfer\00")
@@ -64,6 +63,7 @@
  (export "_ZN12ydappiotoken5applyEyy" (func $_ZN12ydappiotoken5applyEyy))
  (export "_ZN12ydappiotoken10onTransferEyyN5eosio14extended_assetENSt3__112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE" (func $_ZN12ydappiotoken10onTransferEyyN5eosio14extended_assetENSt3__112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE))
  (export "_ZN12ydappiotoken4initEv" (func $_ZN12ydappiotoken4initEv))
+ (export "_ZN12ydappiotoken5clearEv" (func $_ZN12ydappiotoken5clearEv))
  (export "apply" (func $apply))
  (export "malloc" (func $malloc))
  (export "free" (func $free))
@@ -1993,7 +1993,7 @@
                      (tee_local $12
                       (i64.mul
                        (get_local $7)
-                       (i64.const 5000)
+                       (i64.const 2500)
                       )
                      )
                      (i64.const 4611686018427387903)
@@ -3579,7 +3579,7 @@
   )
   (i64.store offset=24
    (get_local $3)
-   (i64.const 10000000)
+   (i64.const 20000000)
   )
   (i32.store offset=40
    (get_local $3)
@@ -3715,6 +3715,13 @@
    (get_local $4)
   )
   (i32.const 1)
+ )
+ (func $_ZN12ydappiotoken5clearEv (type $FUNCSIG$vi) (param $0 i32)
+  (call $require_auth
+   (i64.load
+    (get_local $0)
+   )
+  )
  )
  (func $_ZN5eosio9singletonILy7235159537265672192EN12ydappiotoken6globalEE13get_or_createEyRKS2_ (param $0 i32) (param $1 i32) (param $2 i64) (param $3 i32)
   (local $4 i32)
@@ -9685,10 +9692,5 @@
  )
  (func $__wasm_nullptr (type $FUNCSIG$v)
   (unreachable)
- )
- (func $__importThunk__ZN12ydappiotoken5clearEv (type $FUNCSIG$vi) (param $0 i32)
-  (call $_ZN12ydappiotoken5clearEv
-   (get_local $0)
-  )
  )
 )

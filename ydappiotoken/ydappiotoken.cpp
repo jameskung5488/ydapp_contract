@@ -9,8 +9,12 @@ void ydappiotoken::init() {
     require_auth(_self);    
     auto g = _global.get_or_create(_self, global{});
     g.st = 1542067200;
-    g.quota = 10000000;
+    g.quota = 20000000;
     _global.set(g, _self); 
+}  
+
+void ydappiotoken::clear() {
+    require_auth(_self);
 }  
 
 void ydappiotoken::onTransfer(account_name from, account_name to, extended_asset quantity, string memo){
@@ -32,7 +36,7 @@ void ydappiotoken::onTransfer(account_name from, account_name to, extended_asset
         action(
             permission_level{_self, N(active)},
             N(dacincubator), N(transfer),
-            make_tuple(_self, from, asset(quantity.amount*5000, YDAPP_SYMBOL),
+            make_tuple(_self, from, asset(quantity.amount*2500, YDAPP_SYMBOL),
                 std::string("exceed EOS refund"))
         ).send();         
         g.quota -= quantity.amount;
